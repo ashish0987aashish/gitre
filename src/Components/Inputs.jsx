@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { BiSearch,BiCurrentLocation } from 'react-icons/bi'
 
-const Inputs = ({setQuery,setUnits}) => {
+const Inputs = ({setQuery,setUnits,query}) => {
 
 
     const [city,setCity] = useState('')
@@ -13,15 +13,17 @@ const Inputs = ({setQuery,setUnits}) => {
     }
 
     const handleLocationClick = () =>{
-      if(navigator.geolocation) {
+     
      
           navigator.geolocation.getCurrentPosition((position)=>{
 
-            const {lattitude,longitude} = position.coords
-            setQuery({lat:lattitude,lon:longitude})
-          })
+            const {latitude,longitude} = position.coords
+            setQuery({lat:latitude,lon:longitude})
+            console.log(query)
 
-      }
+          })
+           
+    
     }
 
 
@@ -35,7 +37,7 @@ const Inputs = ({setQuery,setUnits}) => {
           value={city}
           onChange={(e) => setCity(e.currentTarget.value)}
           type="text"
-          placeholder="search by city..."
+          placeholder="search by city..." 
           name=""
           id=""
           className="text-gray-500 text-xl font-light p-2 w-full shadow-xl capitalize focus:outline-none placeholder:lowercase"

@@ -66,7 +66,7 @@ const TempAndDetails = ({weather:{
         <p>{details}</p>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center lg:justify-between py-3">
+      <div className="flex flex-col md:flex-row items-center md:justify-between py-3">
         <img
           src={icon}
           alt="weather icon"

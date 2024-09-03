@@ -8,7 +8,7 @@ import getWeatherData from "./services/weatherService";
 import getFormattedWeatherData from "./services/weatherService";
 
 const App = () => {
-  const [query, setQuery] = useState({ q: "nayagarh" });
+  const [query, setQuery] = useState({ lat:null,lon:null});
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
@@ -17,6 +17,23 @@ const App = () => {
       setWeather(data)
     );
   };
+
+
+  const latLon =  () =>{
+
+     navigator.geolocation.getCurrentPosition((position)=>{
+
+            const {latitude,longitude} = position.coords
+            setQuery({lat:latitude,lon:longitude})
+          })
+  }
+
+   useEffect(()=>{
+    
+    latLon();
+
+   },[])
+
 
   useEffect(() => {
     getWeather();
